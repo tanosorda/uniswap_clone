@@ -1,0 +1,447 @@
+/* Mobile First Responsive Design */
+
+/* Base styles for mobile devices */
+@media (max-width: 767px) {
+    .header-container {
+        padding: 0 var(--space-4);
+        height: 64px;
+    }
+
+    .header-left {
+        gap: var(--space-4);
+    }
+
+    .logo {
+        font-size: var(--font-size-lg);
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .search-container {
+        display: none;
+    }
+
+    .header-actions {
+        gap: var(--space-2);
+    }
+
+    .network-selector {
+        padding: var(--space-2);
+    }
+
+    .network-selector span {
+        display: none;
+    }
+
+    .connect-wallet-btn {
+        padding: var(--space-2) var(--space-3);
+        font-size: var(--font-size-xs);
+    }
+
+    .main {
+        padding: var(--space-4) 0;
+    }
+
+    .swap-container {
+        padding: 0 var(--space-4);
+    }
+
+    .swap-card {
+        padding: var(--space-4);
+    }
+
+    .swap-header h1 {
+        font-size: var(--font-size-lg);
+    }
+
+    .amount-input {
+        font-size: var(--font-size-xl);
+    }
+
+    .token-selector {
+        padding: var(--space-2);
+    }
+
+    .token-symbol {
+        font-size: var(--font-size-sm);
+    }
+
+    .tokens-container,
+    .nfts-container,
+    .pools-container {
+        padding: 0 var(--space-4);
+    }
+
+    .tokens-header,
+    .nfts-header,
+    .pools-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-4);
+    }
+
+    .tokens-header h1,
+    .nfts-header h1,
+    .pools-header h1 {
+        font-size: var(--font-size-2xl);
+    }
+
+    .tokens-filters,
+    .nfts-filters {
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .filter-btn {
+        flex-shrink: 0;
+    }
+
+    .tokens-table,
+    .pools-table {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table-header,
+    .table-row {
+        min-width: 800px;
+    }
+
+    .nfts-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: var(--space-4);
+    }
+
+    .modal-content {
+        margin: var(--space-2);
+        max-width: none;
+        width: calc(100% - var(--space-4));
+    }
+
+    .modal-header {
+        padding: var(--space-4);
+    }
+
+    .modal-search {
+        padding: var(--space-3) var(--space-4);
+    }
+
+    .common-tokens {
+        padding: var(--space-3) var(--space-4);
+    }
+
+    .common-tokens-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .settings-content {
+        padding: var(--space-4);
+    }
+
+    .slippage-options {
+        flex-wrap: wrap;
+    }
+
+    .slippage-btn,
+    .custom-slippage {
+        min-width: 60px;
+    }
+
+    .wallet-options {
+        padding: var(--space-4);
+    }
+
+    .wallet-option {
+        padding: var(--space-3);
+    }
+
+    .wallet-icon {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* Tablet styles */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .header-container {
+        padding: 0 var(--space-6);
+    }
+
+    .search-input {
+        width: 200px;
+    }
+
+    .nav {
+        gap: var(--space-1);
+    }
+
+    .nav-link {
+        padding: var(--space-2);
+        font-size: var(--font-size-sm);
+    }
+
+    .swap-container {
+        max-width: 420px;
+    }
+
+    .tokens-container,
+    .nfts-container,
+    .pools-container {
+        padding: 0 var(--space-6);
+    }
+
+    .nfts-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .table-header,
+    .table-row {
+        font-size: var(--font-size-sm);
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+    .header-container {
+        padding: 0 var(--space-8);
+    }
+
+    .tokens-container,
+    .nfts-container,
+    .pools-container {
+        padding: 0 var(--space-8);
+    }
+
+    .nfts-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+
+    /* Hover effects for desktop */
+    .nav-link:hover {
+        transform: translateY(-1px);
+    }
+
+    .token-selector:hover {
+        transform: translateY(-1px);
+    }
+
+    .table-row:hover {
+        transform: translateY(-1px);
+    }
+
+    .nft-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .filter-btn:hover {
+        transform: translateY(-1px);
+    }
+
+    .wallet-option:hover {
+        transform: translateY(-1px);
+    }
+}
+
+/* Large desktop styles */
+@media (min-width: 1440px) {
+    .header-container {
+        max-width: 1400px;
+        padding: 0 var(--space-10);
+    }
+
+    .tokens-container,
+    .nfts-container,
+    .pools-container {
+        max-width: 1400px;
+        padding: 0 var(--space-10);
+    }
+
+    .search-input {
+        width: 280px;
+    }
+
+    .nfts-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .token-icon,
+    .wallet-icon,
+    .network-icon {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .modal-content {
+        animation: none;
+    }
+
+    .toast {
+        animation: none;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    :root {
+        --border-primary: #000000;
+        --border-secondary: #000000;
+        --text-primary: #000000;
+        --text-secondary: #333333;
+    }
+
+    [data-theme="dark"] {
+        --border-primary: #FFFFFF;
+        --border-secondary: #FFFFFF;
+        --text-primary: #FFFFFF;
+        --text-secondary: #CCCCCC;
+    }
+
+    .swap-card,
+    .modal-content,
+    .tokens-table,
+    .pools-table,
+    .nft-card {
+        border-width: 2px;
+    }
+
+    .token-input,
+    .token-selector,
+    .filter-btn,
+    .slippage-btn,
+    .wallet-option {
+        border-width: 2px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .header,
+    .modal,
+    .toast {
+        display: none !important;
+    }
+
+    .main {
+        padding: 0;
+    }
+
+    .swap-card,
+    .tokens-table,
+    .pools-table,
+    .nft-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #000000;
+    }
+
+    * {
+        background: transparent !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+    }
+
+    .uniswap-pink,
+    .green,
+    .red,
+    .orange {
+        color: #000000 !important;
+    }
+}
+
+/* Focus styles for accessibility */
+@media (prefers-reduced-motion: no-preference) {
+    *:focus {
+        outline: 2px solid var(--uniswap-pink);
+        outline-offset: 2px;
+    }
+
+    .token-input:focus-within,
+    .modal-search input:focus,
+    .custom-slippage input:focus,
+    .deadline-input input:focus {
+        outline: none;
+    }
+}
+
+/* Dark mode media query */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #0D111C;
+        --bg-secondary: #131A2A;
+        --bg-tertiary: #1B2236;
+        
+        --text-primary: #FFFFFF;
+        --text-secondary: #98A1C0;
+        --text-tertiary: #7780A0;
+        
+        --border-primary: #2C2F36;
+        --border-secondary: #40444F;
+        --border-hover: #565A69;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 767px) and (orientation: landscape) {
+    .header-container {
+        height: 56px;
+    }
+
+    .main {
+        padding: var(--space-3) 0;
+    }
+
+    .swap-card {
+        padding: var(--space-3);
+    }
+
+    .modal-content {
+        max-height: 85vh;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+    .header-container {
+        padding: 0 var(--space-2);
+    }
+
+    .swap-container,
+    .tokens-container,
+    .nfts-container,
+    .pools-container {
+        padding: 0 var(--space-2);
+    }
+
+    .swap-card {
+        padding: var(--space-3);
+    }
+
+    .modal-content {
+        margin: var(--space-1);
+        width: calc(100% - var(--space-2));
+    }
+
+    .common-tokens-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .nfts-grid {
+        grid-template-columns: 1fr;
+    }
+}

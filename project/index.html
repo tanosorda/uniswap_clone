@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uniswap Interface</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF007A'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E">
+    
+    <!-- Ethers.js for Web3 functionality -->
+    <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-container">
+                <div class="header-left">
+                    <div class="logo">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Uniswap</span>
+                    </div>
+                    
+                    <nav class="nav">
+                        <a href="#" class="nav-link active" data-section="swap">Swap</a>
+                        <a href="#" class="nav-link" data-section="tokens">Tokens</a>
+                        <a href="#" class="nav-link" data-section="nfts">NFTs</a>
+                        <a href="#" class="nav-link" data-section="pools">Pools</a>
+                    </nav>
+                </div>
+                
+                <div class="header-right">
+                    <div class="search-container">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 14L11.1 11.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <input type="text" placeholder="Search tokens and NFT collections" class="search-input">
+                    </div>
+                    
+                    <div class="header-actions">
+                        <button class="network-selector">
+                            <div class="network-icon ethereum"></div>
+                            <span>Ethereum</span>
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        
+                        <button class="connect-wallet-btn" id="connect-wallet">
+                            Connect Wallet
+                        </button>
+                        
+                        <button class="more-menu">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <circle cx="8" cy="3" r="1.5" fill="currentColor"/>
+                                <circle cx="8" cy="8" r="1.5" fill="currentColor"/>
+                                <circle cx="8" cy="13" r="1.5" fill="currentColor"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Swap Section -->
+            <section class="section swap-section active" id="swap">
+                <div class="swap-container">
+                    <div class="swap-card">
+                        <div class="swap-header">
+                            <h1>Swap</h1>
+                            <button class="settings-btn" id="settings-btn">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M12.9 8.8C12.8 9.1 12.6 9.3 12.3 9.4L11.6 9.7C11.5 10.1 11.3 10.4 11.1 10.7L11.3 11.4C11.4 11.7 11.3 12 11.1 12.2L10.2 13.1C10 13.3 9.7 13.4 9.4 13.3L8.7 13.1C8.4 13.3 8.1 13.5 7.7 13.6L7.4 14.3C7.3 14.6 7 14.8 6.7 14.8H5.3C5 14.8 4.7 14.6 4.6 14.3L4.3 13.6C3.9 13.5 3.6 13.3 3.3 13.1L2.6 13.3C2.3 13.4 2 13.3 1.8 13.1L0.9 12.2C0.7 12 0.6 11.7 0.7 11.4L0.9 10.7C0.7 10.4 0.5 10.1 0.4 9.7L-0.3 9.4C-0.6 9.3 -0.8 9 -0.8 8.7V7.3C-0.8 7 -0.6 6.7 -0.3 6.6L0.4 6.3C0.5 5.9 0.7 5.6 0.9 5.3L0.7 4.6C0.6 4.3 0.7 4 0.9 3.8L1.8 2.9C2 2.7 2.3 2.6 2.6 2.7L3.3 2.9C3.6 2.7 3.9 2.5 4.3 2.4L4.6 1.7C4.7 1.4 5 1.2 5.3 1.2H6.7C7 1.2 7.3 1.4 7.4 1.7L7.7 2.4C8.1 2.5 8.4 2.7 8.7 2.9L9.4 2.7C9.7 2.6 10 2.7 10.2 2.9L11.1 3.8C11.3 4 11.4 4.3 11.3 4.6L11.1 5.3C11.3 5.6 11.5 5.9 11.6 6.3L12.3 6.6C12.6 6.7 12.8 7 12.8 7.3V8.7C12.9 8.7 12.9 8.7 12.9 8.8Z" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div class="swap-form">
+                            <div class="token-input-container">
+                                <div class="token-input-header">
+                                    <span class="token-label">You pay</span>
+                                    <span class="token-balance">Balance: <span id="from-balance">0</span></span>
+                                </div>
+                                <div class="token-input">
+                                    <input type="text" class="amount-input" placeholder="0" id="from-amount">
+                                    <button class="token-selector" id="from-token">
+                                        <div class="token-info">
+                                            <div class="token-icon eth-icon">Ξ</div>
+                                            <span class="token-symbol">ETH</span>
+                                        </div>
+                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                            <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="token-value">$<span id="from-value">0.00</span></div>
+                            </div>
+                            
+                            <div class="swap-arrow-container">
+                                <button class="swap-arrow" id="swap-direction">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 1V15M8 15L12 11M8 15L4 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <div class="token-input-container">
+                                <div class="token-input-header">
+                                    <span class="token-label">You receive</span>
+                                    <span class="token-balance">Balance: <span id="to-balance">0</span></span>
+                                </div>
+                                <div class="token-input">
+                                    <input type="text" class="amount-input" placeholder="0" id="to-amount" readonly>
+                                    <button class="token-selector" id="to-token">
+                                        <div class="token-info">
+                                            <span class="token-symbol">Select token</span>
+                                        </div>
+                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                            <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="token-value">$<span id="to-value">0.00</span></div>
+                            </div>
+                            
+                            <div class="swap-details" id="swap-details" style="display: none;">
+                                <div class="swap-rate">
+                                    <span id="swap-rate-text">1 ETH = 2,450.32 USDC</span>
+                                    <button class="rate-toggle">
+                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                            <path d="M3 9L9 3M9 3H5M9 3V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="swap-info">
+                                    <div class="info-row">
+                                        <span>Expected Output</span>
+                                        <span id="expected-output">-</span>
+                                    </div>
+                                    <div class="info-row">
+                                        <span>Price Impact</span>
+                                        <span id="price-impact" class="green">&lt; 0.01%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="swap-button" id="swap-button">
+                                <span>Connect Wallet</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tokens Section -->
+            <section class="section tokens-section" id="tokens">
+                <div class="tokens-container">
+                    <div class="tokens-header">
+                        <h1>Explore tokens on Ethereum</h1>
+                        <div class="tokens-filters">
+                            <button class="filter-btn active">🔥 Trending</button>
+                            <button class="filter-btn">⭐ Favorites</button>
+                            <button class="filter-btn">📈 Gainers</button>
+                            <button class="filter-btn">📉 Losers</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tokens-table">
+                        <div class="table-header">
+                            <div class="table-cell">#</div>
+                            <div class="table-cell">Token Name</div>
+                            <div class="table-cell">Price</div>
+                            <div class="table-cell">1h %</div>
+                            <div class="table-cell">24h %</div>
+                            <div class="table-cell">7d %</div>
+                            <div class="table-cell">FDV</div>
+                            <div class="table-cell">Volume</div>
+                            <div class="table-cell">TVL</div>
+                        </div>
+                        <div class="table-body" id="tokens-table-body">
+                            <!-- Token rows will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NFTs Section -->
+            <section class="section nfts-section" id="nfts">
+                <div class="nfts-container">
+                    <div class="nfts-header">
+                        <h1>Explore NFTs</h1>
+                        <div class="nfts-filters">
+                            <button class="filter-btn active">🔥 Trending</button>
+                            <button class="filter-btn">📊 Top</button>
+                            <button class="filter-btn">🆕 New</button>
+                        </div>
+                    </div>
+                    
+                    <div class="nfts-grid" id="nfts-grid">
+                        <!-- NFT cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pools Section -->
+            <section class="section pools-section" id="pools">
+                <div class="pools-container">
+                    <div class="pools-header">
+                        <h1>Top pools</h1>
+                        <button class="new-position-btn">+ New Position</button>
+                    </div>
+                    
+                    <div class="pools-table">
+                        <div class="table-header">
+                            <div class="table-cell">#</div>
+                            <div class="table-cell">Pool</div>
+                            <div class="table-cell">TVL</div>
+                            <div class="table-cell">Volume 24H</div>
+                            <div class="table-cell">Volume 7d</div>
+                            <div class="table-cell">Fees 24H</div>
+                            <div class="table-cell">1d APR</div>
+                        </div>
+                        <div class="table-body" id="pools-table-body">
+                            <!-- Pool rows will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Token Selection Modal -->
+        <div class="modal" id="token-modal">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Select a token</h3>
+                    <button class="modal-close" id="modal-close">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="modal-search">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 14L11.1 11.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <input type="text" placeholder="Search name or paste address" id="token-search">
+                </div>
+                
+                <div class="common-tokens">
+                    <div class="common-tokens-list" id="common-tokens-list">
+                        <!-- Common tokens will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="token-list" id="token-list">
+                    <!-- Token list will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div class="modal" id="settings-modal">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Settings</h3>
+                    <button class="modal-close" id="settings-close">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="settings-content">
+                    <div class="setting-group">
+                        <label>Slippage tolerance</label>
+                        <div class="slippage-options">
+                            <button class="slippage-btn">Auto</button>
+                            <button class="slippage-btn">0.1%</button>
+                            <button class="slippage-btn active">0.5%</button>
+                            <button class="slippage-btn">1.0%</button>
+                            <div class="custom-slippage">
+                                <input type="number" placeholder="0.50" step="0.01" max="50">
+                                <span>%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label>Transaction deadline</label>
+                        <div class="deadline-input">
+                            <input type="number" value="30" min="1">
+                            <span>minutes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label>Interface Settings</label>
+                        <div class="interface-settings">
+                            <div class="setting-item">
+                                <span>Auto Router API</span>
+                                <div class="toggle">
+                                    <input type="checkbox" id="auto-router" checked>
+                                    <label for="auto-router"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <span>Expert Mode</span>
+                                <div class="toggle">
+                                    <input type="checkbox" id="expert-mode">
+                                    <label for="expert-mode"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wallet Connection Modal -->
+        <div class="modal" id="wallet-modal">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Connect a wallet</h3>
+                    <button class="modal-close" id="wallet-close">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="wallet-options">
+                    <div class="wallet-option" data-wallet="metamask">
+                        <div class="wallet-icon metamask-icon"></div>
+                        <div class="wallet-info">
+                            <div class="wallet-name">MetaMask</div>
+                            <div class="wallet-description">Connect using browser wallet</div>
+                        </div>
+                    </div>
+                    
+                    <div class="wallet-option" data-wallet="walletconnect">
+                        <div class="wallet-icon walletconnect-icon"></div>
+                        <div class="wallet-info">
+                            <div class="wallet-name">WalletConnect</div>
+                            <div class="wallet-description">Connect using WalletConnect</div>
+                        </div>
+                    </div>
+                    
+                    <div class="wallet-option" data-wallet="coinbase">
+                        <div class="wallet-icon coinbase-icon"></div>
+                        <div class="wallet-info">
+                            <div class="wallet-name">Coinbase Wallet</div>
+                            <div class="wallet-description">Connect using Coinbase Wallet</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/token-icons.js"></script>
+    <script src="js/wallet-real.js"></script>
+    <script src="js/tokens.js"></script>
+    <script src="js/wallet.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
