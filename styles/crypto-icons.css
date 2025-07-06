@@ -1,0 +1,350 @@
+/* Enhanced cryptocurrency icons and symbols styling */
+
+/* Crypto display components */
+.crypto-display {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.crypto-display-small {
+    font-size: var(--font-size-sm);
+}
+
+.crypto-display-medium {
+    font-size: var(--font-size-base);
+}
+
+.crypto-display-large {
+    font-size: var(--font-size-lg);
+}
+
+.crypto-icon-emoji {
+    font-size: 1.2em;
+    line-height: 1;
+}
+
+.crypto-symbol-text {
+    font-weight: var(--font-weight-medium);
+}
+
+/* Enhanced token icons */
+.token-icon-enhanced {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.token-icon-enhanced.small {
+    width: 24px;
+    height: 24px;
+}
+
+.token-icon-enhanced.large {
+    width: 40px;
+    height: 40px;
+}
+
+.token-icon-enhanced .crypto-emoji {
+    font-size: 16px;
+    line-height: 1;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.token-icon-enhanced.small .crypto-emoji {
+    font-size: 12px;
+}
+
+.token-icon-enhanced.large .crypto-emoji {
+    font-size: 20px;
+}
+
+/* Enhanced token selectors */
+.token-selector .token-icon-enhanced {
+    width: 24px;
+    height: 24px;
+}
+
+.token-symbol-enhanced {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Enhanced common tokens */
+.common-token.enhanced {
+    position: relative;
+    overflow: hidden;
+}
+
+.common-token.enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
+    pointer-events: none;
+}
+
+.common-token.enhanced:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Enhanced token list items */
+.token-list-item.enhanced {
+    position: relative;
+}
+
+.token-list-item.enhanced::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--uniswap-pink) 0%, var(--uniswap-blue) 100%);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.token-list-item.enhanced:hover::before {
+    opacity: 1;
+}
+
+.token-list-item.enhanced .token-name {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.token-list-item.enhanced .token-symbol {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    opacity: 0.8;
+}
+
+/* Enhanced table rows */
+.table-row.enhanced {
+    position: relative;
+}
+
+.table-row.enhanced::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--uniswap-pink) 0%, var(--uniswap-blue) 100%);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.table-row.enhanced:hover::before {
+    opacity: 1;
+}
+
+.token-name-cell.enhanced {
+    position: relative;
+}
+
+.token-name-cell.enhanced .token-name {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.token-name-cell.enhanced .token-symbol {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    opacity: 0.8;
+}
+
+/* Enhanced pool displays */
+.pool-name-cell.enhanced .pool-name {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+}
+
+.pool-tokens .token-icon-enhanced {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.pool-tokens .token-icon-enhanced .crypto-emoji {
+    font-size: 10px;
+}
+
+.pool-tokens .token-icon-enhanced:not(:first-child) {
+    margin-left: -6px;
+}
+
+/* Crypto icon animations */
+@keyframes cryptoGlow {
+    0%, 100% {
+        box-shadow: var(--shadow-sm);
+    }
+    50% {
+        box-shadow: var(--shadow-md), 0 0 20px rgba(255, 0, 122, 0.3);
+    }
+}
+
+.token-icon-enhanced:hover {
+    animation: cryptoGlow 2s ease-in-out infinite;
+}
+
+/* Crypto symbol gradients */
+.crypto-symbol-gradient {
+    background: linear-gradient(135deg, var(--uniswap-pink) 0%, var(--uniswap-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: var(--font-weight-bold);
+}
+
+/* Enhanced swap interface */
+.swap-card .token-icon-enhanced {
+    width: 28px;
+    height: 28px;
+}
+
+.swap-card .token-symbol-enhanced {
+    font-size: var(--font-size-lg);
+}
+
+/* Enhanced header */
+.header .token-icon-enhanced {
+    width: 20px;
+    height: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .token-icon-enhanced {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .token-icon-enhanced.small {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .token-icon-enhanced .crypto-emoji {
+        font-size: 14px;
+    }
+    
+    .token-icon-enhanced.small .crypto-emoji {
+        font-size: 10px;
+    }
+    
+    .crypto-display {
+        gap: 2px;
+    }
+    
+    .token-symbol-enhanced {
+        font-size: var(--font-size-sm);
+    }
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+    .token-icon-enhanced {
+        border-width: 3px;
+        border-color: var(--text-primary);
+    }
+    
+    .crypto-icon-emoji {
+        filter: contrast(1.5);
+    }
+}
+
+/* Print styles */
+@media print {
+    .token-icon-enhanced {
+        background: #f0f0f0 !important;
+        border: 1px solid #000000 !important;
+    }
+    
+    .crypto-icon-emoji {
+        color: #000000 !important;
+    }
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .token-icon-enhanced {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .common-token.enhanced::before {
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.05) 100%);
+}
+
+/* Accessibility improvements */
+.token-icon-enhanced:focus {
+    outline: 2px solid var(--uniswap-pink);
+    outline-offset: 2px;
+}
+
+.crypto-display:focus-within {
+    outline: 2px solid var(--uniswap-pink);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* Loading states for crypto icons */
+.token-icon-enhanced.loading {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Tooltip enhancements for crypto info */
+.crypto-tooltip {
+    position: relative;
+}
+
+.crypto-tooltip::after {
+    content: attr(data-crypto-name);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text-primary);
+    color: var(--text-white);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-fast);
+    z-index: 1000;
+}
+
+.crypto-tooltip:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
